@@ -1,0 +1,85 @@
+<main>
+  <div class="left-column">
+    <section class="supplier-search">
+     <!----- <h3>Identifique el proveedor para empezar</h3>-->
+      <div class="search-box">
+        <label for="supplier-input">Nombre o NIT</label>
+        <input
+          type="text"
+          id="supplier-input"
+          [(ngModel)]="supplierInput"
+          (input)="searchSupplier()"
+          placeholder="Input text"
+        />
+      </div>
+    </section>
+
+    <section class="supplier-info" *ngIf="suppliersList.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>Proveedor</th>
+            <th>Nit</th>
+            <th>Tipo</th>
+            <th>Direccion</th>
+            <th>Celular</th>
+            <th>Categoría</th>
+            <th>Estado</th>
+            <th>Evaluar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let supplier of suppliersList">
+            <tr *ngIf="supplier.predecessor">
+            <td>{{ supplier.suppliersName }}</td>
+            <td>{{ supplier.suppliersNit }}</td>
+            <td>{{ supplier.suppliersType }}</td>
+            <td>{{ supplier.suppliersAddress }}</td>
+            <td>{{ supplier.suppliersPhone }}</td>
+            <td>{{ supplier.categoryName?.categoryName }}</td>
+            <td [ngClass]="{'active-supplier': supplier.suppliersState === 'Activo', 
+            'inactive-supplier': supplier.suppliersState === 'Inactivo'}"> 
+            {{ supplier.suppliersState }} </td>
+            <td>
+              <a (click)="goToSupplierEvaluation(supplier)" class="btn">Evaluar</a>
+            </td>
+          </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <div class="right-column" *ngIf="evaluations.length > 0">
+    <section class="evaluations">
+      <h4>Evaluaciones realizadas</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Ejecutor</th>
+            <th>Fecha</th>
+            <th>Calificación</th>
+            <th>Predesesor</th>
+            <th>Proveedor Nit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container  *ngFor="let supplier of suppliersList" >
+          <tr  *ngFor="let evaluation of supplier.evaluations" >
+            <td>UPB</td>
+            <td>{{ evaluation.date | date:'yyyy-MM-dd' }}</td>
+            <td>{{ evaluation.rating }}</td>
+            <td>{{ supplier?.predecessor?.suppliersName}}</td>
+            <td>{{ supplier.suppliersName }}</td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</main>
+
+<!-- Status message -->
+<div *ngIf="statusMessage" id="status-message">
+  {{ statusMessage }}
+</div>

@@ -1,0 +1,66 @@
+<div class="provider-info">
+    <h4>{{ providerName }}</h4>
+    <p class="bold-text">{{ providerNit }}</p>
+    <p class="bold-text">{{ providerType }} - {{ providerCategory }} - {{ providerPredecessor }}</p>
+<div class="button">
+  <button class="livebox-button" (click)="toggleLiveBox()">i</button>
+</div>
+</div>
+
+<div class="evaluation-section">
+    <label for="detail">Detalle:</label>
+    <mat-form-field appearance="fill">
+        <mat-label>Seleccione una opción:</mat-label>
+        <mat-select [(value)]="selectedOption">
+            <mat-option *ngFor="let option of options" [value]="option">{{
+                option
+                }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let criterio of criterios">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ criterio }}</mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <p class="response-count">
+      Respuestas: {{ responseCount }}/{{ totalQuestions }}
+    </p>
+    <p class="criterio-average">
+      Promedio de calificación: {{ calculateAverageRatingForCriterio(criterio) | number: '1.1-1' }}
+    </p>
+
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <!-- Filtrar las preguntas con el getter -->
+    <div *ngFor="let question of getQuestionsByCriterio(criterio)" class="question">
+      <p>{{ question.question }}</p>
+      <div class="toggle">
+        <label for="toggle-{{ question.questionId }}" class="toggle-label">_____Aplica</label>
+        <input type="checkbox" id="toggle-{{ question.questionId }}" [(ngModel)]="question.applies" />
+        <span class="toggle-indicator"></span>
+      </div> 
+      <div class="rating" [class.disabled]="!question.applies">
+        <span *ngFor="let star of stars" class="star" [class.active]="isStarActive(question, star)"
+              (click)="rate(question, star)">☆</span>
+           
+        <span class="no-aplica" *ngIf="!question.applies">No Aplica</span>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+<div class="overlay" *ngIf="isLiveBoxVisible">
+  <div class="overlay-content">
+    <p>This is a live box with some text.</p>
+    <button class="close-button" (click)="toggleLiveBox()">Close</button>
+  </div>
+</div>
+<div class="button-container">
+  <p class="total-average">
+    Promedio total: {{ calculateTotalAverageRating() | number: '1.1-1' }}
+  </p>
+    <button class="save-button" (click)="saveEvaluation()">Guardar</button>
+</div>
+  

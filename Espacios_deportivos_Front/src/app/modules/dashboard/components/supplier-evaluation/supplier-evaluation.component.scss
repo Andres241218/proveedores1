@@ -1,0 +1,279 @@
+/* Estilos generales */
+.provider-info {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto;
+  margin-left: 450px;
+}
+.bold-text {
+  font-weight: bold;
+  font-size: 1.5em; /* Ajusta el tamaño a tu preferencia */
+}
+
+.evaluation-section {
+  margin-top: 10px;
+  display: grid;
+  justify-content: center;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.evaluation-section label {
+  margin-left: 70px;
+}
+
+.detail-select {
+  padding: 5px;
+}
+
+.criteria {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.criteria h3 {
+  font-size: 1.2em;
+}
+
+.response-count {
+  text-align: right;
+  font-weight: bold;
+}
+
+/* Estilos de expansión */
+.mat-expansion-panel, .mat-accordion {
+  display: block;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mat-expansion-panel .mat-expansion-panel-header,
+.mat-accordion .mat-expansion-panel-header {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.mat-expansion-panel .mat-expansion-panel-content,
+.mat-accordion .mat-expansion-panel-content {
+  padding: 20px;
+}
+
+/* Preguntas */
+.question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.question p {
+  flex: 3;
+  margin: 0;
+}
+
+/* Toggle Switch */
+.toggle {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: auto;
+  margin-right: 10px;
+}
+
+.toggle-label {
+  margin-right: 10px;
+  font-size: 1em;
+  vertical-align: middle;
+  margin-left: 20px;
+}
+
+.toggle input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-indicator {
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d4d;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+  margin-left: 20px;
+}
+
+.toggle input[type="checkbox"]:checked + .toggle-indicator {
+  background-color: #5c9d00;
+}
+
+.toggle input[type="checkbox"]:checked + .toggle-indicator:before {
+  transform: translateX(20px);
+}
+
+.toggle-indicator:before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: rgb(201, 191, 191);
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+/* Reseñas y estrellas */
+.rating {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  margin-left: 90px;
+}
+
+.star {
+  font-size: 1.5em;
+  color: #ddd;
+  cursor: pointer;
+  padding: 0 3px;
+  margin-left: 10px;
+}
+
+.star:hover,
+.star.active {
+  color: #ffc107;
+}
+
+.rating.disabled .star {
+  color: #fbfbfb;
+  cursor: not-allowed;
+  
+}
+
+/* Botón de guardar */
+.save-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-block: 20px;
+  margin-bottom: 80px;
+  margin-left: 600px;
+}
+
+.save-button:hover {
+  background-color: #45a049;
+}
+
+/* Mensajes de error */
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Contenedor del botón */
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Posicionamiento de promedio total */
+.total-average {
+  position: relative;
+  top: -30px;
+  font-size: 1.5em;
+  
+}
+.button {
+  position: fixed;
+  top: 200px;
+  right: 200px;
+  z-index: 1001; /* Ensure it is above other elements */
+}
+
+/* Live Box Button */
+.livebox-button {
+  background-color: #007bff; /* Blue color */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.livebox-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.overlay-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.close-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.close-button:hover {
+  background-color: #0056b3;
+}
+
+

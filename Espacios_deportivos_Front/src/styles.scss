@@ -1,0 +1,86 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@use './assets/mixins/custom-dark-components.scss' as dark-custom;
+@use './assets/mixins/warn-theme.scss' as warn-theme;
+@import "@ng-select/ng-select/themes/material.theme.css";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the theme object.
+$Provedores-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+:root {
+  @include mat.all-component-themes($Provedores-theme);
+}
+
+// Comment out the line below if you want to use the pre-defined typography utility classes.
+// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
+// @include mat.typography-hierarchy($Provedores-theme);
+
+// Comment out the line below if you want to use the deprecated `color` inputs.
+// @include mat.color-variants-backwards-compatibility($Provedores-theme);
+
+
+
+@include mat.core();
+
+$light-theme: mat.define-theme((color: (primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+    ));
+$dark-theme: mat.define-theme((color: (theme-type: dark,
+        primary: mat.$magenta-palette,
+        tertiary: mat.$violet-palette,
+      ),
+    ));
+
+
+html {
+  @include mat.all-component-themes($light-theme);
+  background: mat.get-theme-color($light-theme, surface);
+  @include warn-theme.color($light-theme);
+
+  &.dark {
+    @include mat.all-component-colors($dark-theme);
+    background: mat.get-theme-color($dark-theme, surface);
+    @include dark-custom.color($light-theme);
+  }
+}
+
+html,
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: Avenir Next LT Pro;
+  src: url('./assets/fonts/AvenirNextLTPro-Regular.otf') format('truetype'),
+    url('./assets/fonts/AvenirNextLTPro-Bold.otf') format('truetype');
+}
+
+* {
+  font-family: Avenir Next LT Pro;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
